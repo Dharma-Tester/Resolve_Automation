@@ -1,0 +1,9 @@
+package com.resolve.pom;
+
+public class Basepage {
+	
+	protected  Basepage() {
+		
+	}
+
+}

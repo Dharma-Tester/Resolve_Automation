@@ -1,0 +1,23 @@
+package com.resolve.pom;
+
+import com.resolve.generic.Waitstrategy;
+
+public class Basepage {
+	
+	protected  Basepage() {
+		
+	}
+	
+	
+	
+	protected void sendkeysAction(String by,String locatortype, Waitstrategy strategy,String value) {
+		By element =null;
+		if (locatortype.contentEquals("xpath")) {
+			element = By.xpath(by);
+		} else {
+			element = By.cssSelector(by);
+		}
+		performExplicitWait(strategy,element).sendKeys(value);
+	}
+
+}

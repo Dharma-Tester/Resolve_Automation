@@ -1,0 +1,16 @@
+package com.resolve.pom;
+
+public class LoginPage extends Basepage {
+	
+	
+	public Inboxpage loginprocess(String userName,String password) {
+		
+		
+		return new Inboxpage();
+		
+	}
+	
+	
+	}
+
+

@@ -1,0 +1,41 @@
+package com.resolve.testscript;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+import javax.mail.MessagingException;
+
+import org.assertj.core.api.Assertions;
+import org.testng.Reporter;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import com.resolve.generic.ExcelReader;
+import com.resolve.generic.zerocell.TestData;
+import com.resolve.pom.LoginPage;
+
+public final class LoginTestscript extends BaseTestCase {
+
+	private LoginTestscript() {
+	}
+
+
+	@Test(dataProvider = "getdata")
+	public static void loginTestcases(TestData data) throws InterruptedException, MessagingException, IOException {
+		new LoginPage()
+		 .loginprocess("pkhan","Resolve@12345");
+	}
+	
+	@DataProvider
+	public static Object[] getdata(){
+		
+	  List<TestData> testdata =  ExcelReader.testdata;
+	return testdata.toArray();	
+	
+		
+	}
+
+
+
+}

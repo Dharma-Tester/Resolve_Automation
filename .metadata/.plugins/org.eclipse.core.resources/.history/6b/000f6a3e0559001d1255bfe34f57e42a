@@ -1,0 +1,71 @@
+package com.resolve.testscript;
+
+import java.util.Objects;
+
+import org.assertj.core.api.Assertions;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+import com.resolve.generic.DriverManager;
+import com.resolve.generic.ReadProperties;
+import com.resolve.pom.LoginPage;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public  class BaseTestCase   {
+
+
+	protected BaseTestCase() {
+	}
+
+
+	@BeforeMethod
+	protected static void prerequistics() throws Exception {
+		if (Objects.isNull(DriverManager.getDriver())) {
+			WebDriverManager.chromedriver().setup();       // firefoxdriver()
+			ChromeOptions option = new ChromeOptions();
+			option.setHeadless(true);
+			DriverManager.setDriver(new ChromeDriver());
+			DriverManager.getDriver().get(ReadProperties.getValue("url"));
+			DriverManager.getDriver().manage().window().maximize();
+			Reporter.log("Successfully launched", true);
+			//Assertions.assertThat(BasePage.getPageTitle())
+		//	.containsIgnoringCase("PreRegistration");
+
+		}
+		//return new LoginPage();	
+
+	}
+
+
+
+
+	@AfterMethod
+	protected static void shutDown() throws InterruptedException {
+		if (Objects.nonNull(DriverManager.getDriver())) {
+			DriverManager.getDriver().quit();
+			DriverManager.unload();
+		}
+
+	}
+
+	// Notes
+	/*FirefoxProfile firefoxProfile = new FirefoxProfile();
+	  File addonpath = new File("C:\\\\Users\\\\Tester\\\\AppData\\\\Roaming\\\\Mozilla\\\\Firefox\\\\Profiles\\\\youa0izg.default\\\\extensions\\\\cors-everywhere@spenibus.xpi");
+	  firefoxProfile.addExtension(addonpath);
+	  firefoxProfile.setPreference("extensions.cors-everywhere@spenibus.allPagesActivation", true);
+	  DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+	  capabilities.setCapability(FirefoxDriver.PROFILE, firefoxProfile);
+	  profile.addExtension("C:\\Users\\Tester\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\youa0izg.default\\extensions\\cors-everywhere@spenibus.xpi", null) ;
+			driver = new FirefoxDriver(profile) ; 				   //FirefoxDriver()
+			driver.install_addon('C:\Users\Tester\AppData\Roaming\Mozilla\Firefox\Profiles\youa0izg.default\extensions\cors-everywhere@spenibus.xpi', temporary=True);
+			driver= new FirefoxDriver(capabilities);
+			driver = new ChromeDriver();   //option */
+
+
+}

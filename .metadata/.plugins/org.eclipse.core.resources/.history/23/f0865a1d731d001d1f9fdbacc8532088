@@ -1,0 +1,28 @@
+package com.resolve.testscript;
+
+import java.io.IOException;
+import java.util.Map;
+
+import javax.mail.MessagingException;
+
+import org.assertj.core.api.Assertions;
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+import com.resolve.pom.LoginPage;
+
+public final class LoginTestscript extends BaseTestCase {
+
+	private LoginTestscript() {
+	}
+
+
+	@Test()
+	public static void loginTestcases() throws InterruptedException, MessagingException, IOException {
+		new LoginPage()
+		 .loginprocess("pkhan","Resolve@12345");
+	}
+
+
+
+}

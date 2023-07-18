@@ -1,0 +1,19 @@
+package com.resolve.generic;
+
+import java.util.List;
+
+import com.creditdatamw.zerocell.Reader;
+import com.resolve.generic.zerocell.TestData;
+
+public class ExcelReader {
+	
+	public ExcelReader() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	static {
+		List<TestData> testdata = Reader.of(TestData.class);
+	}
+
+}
